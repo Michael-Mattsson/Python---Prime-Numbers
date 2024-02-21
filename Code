@@ -1,0 +1,72 @@
+# Task 1 - Your task is to create a Python function, is_prime(n), that determines whether a given number n is prime. This function should return either True or False.
+
+---------------------------------------------------------------------------------------------------------
+
+
+import math
+
+# math module allows you to use mathematical functions such as trigonometric functions (sin, cos, tan), log functions, constants (math.pi), and math operations (math.sqrt)
+
+def is_prime(n):
+
+    # Lowest prime numbers are 2 and 3, 1 is not considered a prime
+    if n < 2:
+        return False
+
+    if n == 2 or n == 3:
+        return True
+
+    # Check for divisibility from 2 to the square root of n
+    # Why sqrt of n? Because every combination past that is just a mirrored repetition of the factors before the sqrt --> 2*17 and 17*2. If n is not a prime number and has a factor greater than the sqrt, then it also has a factor lower than the sqrta
+
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+
+    # % returns the remainder. If value is 0, n is divisible by i and not a prime number
+    # Remainder is >0 and not divisible by 2 to sqrt(n)
+    return True
+
+# Tester
+number = 89
+print(f"{number} is prime: {is_prime(number)}")
+
+
+
+-----------------------------------------------------------------------------------------------------------
+
+# Task 2 - After creating a function to check if a number is prime, consider the range of natural numbers from 100 to 151 inclusive. Find how many prime numbers are present in this range.
+
+---------------------------------------------------------------------------------------------------------
+
+
+def count_primes(lower, upper):
+
+    prime_count = 0
+
+    for num in range(lower, upper + 1):
+        if is_prime(num):
+            prime_count += 1
+    return prime_count
+
+# Range:
+lower_bound = 100
+upper_bound = 151
+num_primes = count_primes(lower_bound, upper_bound)
+print(f"Number of prime numbers between {lower_bound} and {upper_bound}: {num_primes}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
